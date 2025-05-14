@@ -55,7 +55,7 @@ public class TimerService {
     }
 
     public void clearConsole() {
-        System.out.print("\033[H\033[2J");
+        System.out.print("\033[H\033[2J\033[3J"); // Added \033[3J to clear scrollback buffer
         System.out.flush();
     }
 }

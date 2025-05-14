@@ -5,7 +5,7 @@ public class UserInteraction {
     private final Scanner scanner = new Scanner(System.in);
 
     public boolean AskYesNo(String prompt) {
-        System.out.println(prompt);
+        System.out.print(prompt + " ");
         String input = scanner.nextLine().trim().toLowerCase();
         return input.equals("y") || input.equals("yes");
     }

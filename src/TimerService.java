@@ -1,5 +1,3 @@
-import java.time.Duration;
-
 public class TimerService {
 
     private UserInteraction interaction;
@@ -9,18 +7,19 @@ public class TimerService {
     }
 
     public void runWorkTimer(PomoSession session) {
+        clearConsole();
         int totalSeconds = session.getDuration() * 60;
         int calculatedBreak = Math.min((int) (totalSeconds * 0.2), 20);
         countDown("🏗️", totalSeconds);
 
-        System.out.println("Work Completed ✅");
+        System.out.println("\nWork Completed ✅");
 
-        if (interaction.AskYesNo("Would you like to take a break 💆🏻 (Y/n)")) {
+        if (interaction.AskYesNo("Would you like to take a break 💆🏻 (Y/n) :")) {
             System.out.println("Running Break ⏳️ -> this is an autogen break");
-            countDown("🫁", calculatedBreak);
+            runBreakTimer(calculatedBreak / 60);
         } else if (
             interaction.AskYesNo(
-                "Would you like to work another session 👩🏻‍🏭 (Y/n)"
+                "\nWould you like to work another session 👩🏻‍🏭 (Y/n)"
             )
         ) {
             int newDuration = interaction.AskInt("Enter work duration ");
@@ -29,17 +28,21 @@ public class TimerService {
         }
     }
 
-    public void runBreakTimer() {}
+    public void runBreakTimer(int durationMinutes) {
+        countDown("😴", durationMinutes * 60);
+        System.out.println("\nBreak Finished 💪🏻");
+        System.out.println("");
+    }
 
     public void countDown(String emoji, int totalSeconds) {
         for (int i = totalSeconds; i >= 0; i--) {
             int minutes = i / 60;
             int seconds = i % 60;
-            System.out.println(
+            System.out.print(
                 "\r" +
                 emoji +
                 " " +
-                String.format("%02d:%02d", minutes, seconds)
+                String.format(" %02d:%02d", minutes, seconds)
             );
             System.out.flush();
             try {
@@ -49,5 +52,10 @@ public class TimerService {
                 break;
             }
         }
+    }
+
+    public void clearConsole() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
 }

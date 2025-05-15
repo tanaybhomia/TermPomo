@@ -10,6 +10,7 @@ public class TimerService {
         clearConsole();
         int totalSeconds = session.getDuration() * 60;
         int calculatedBreak = Math.min((int) (totalSeconds * 0.2), 20);
+        System.out.println("Work");
         countDown("🏗️", totalSeconds);
 
         System.out.println("\nWork Completed ✅");

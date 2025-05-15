@@ -1,3 +1,5 @@
+package termpomo;
+
 public class PomoSession {
 
     private String mode;

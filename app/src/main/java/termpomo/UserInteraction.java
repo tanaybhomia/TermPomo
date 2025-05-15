@@ -1,3 +1,5 @@
+package termpomo;
+
 import java.util.Scanner;
 
 public class UserInteraction {

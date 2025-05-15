@@ -1,3 +1,5 @@
+package termpomo;
+
 import java.util.Scanner;
 
 public class PomodoroApp {
@@ -15,11 +17,9 @@ public class PomodoroApp {
                 break;
             }
             String[] parts = input.split("\\s+");
-            if (
-                parts.length == 2 &&
-                (parts[0].equalsIgnoreCase("work") ||
-                    parts[0].equalsIgnoreCase("break"))
-            ) {
+            if (parts.length == 2 &&
+                    (parts[0].equalsIgnoreCase("work") ||
+                            parts[0].equalsIgnoreCase("break"))) {
                 String mode = parts[0];
                 int duration = Integer.parseInt(parts[1]);
                 PomoSession session = new PomoSession(mode, duration);
@@ -33,5 +33,6 @@ public class PomodoroApp {
                 System.out.println("\nIncorrect input. Example: 'work 25'");
             }
         }
+        scanner.close();
     }
 }

@@ -1,3 +1,5 @@
+package termpomo;
+
 public class TimerService {
 
     private UserInteraction interaction;
